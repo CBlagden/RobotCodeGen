@@ -1,0 +1,42 @@
+#set ($package="org.usfirst.team"+$teamName+".robot")
+
+package $package;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+
+/*
+*  @author Chase Blagden && Nico Machado
+*  created on $date
+*/
+public class Robot extends IterativeRobot {
+
+	@Override
+	public void robotInit() {
+	  #foreach ($subsystem in $subsystems)
+	    #set ($subsystemInstance = $subsystem.getName()+".getInstance()")
+	    Systems.add($subsystemInstance);
+	  #end
+		Systems.init();
+	}
+
+	@Override
+	public void autonomousInit() {
+	}
+
+	@Override
+	public void autonomousPeriodic() {
+	}
+
+	@Override
+	public void teleopInit() {
+		Systems.initTeleop();
+	}
+
+	@Override
+	public void teleopPeriodic() {
+	}
+
+	@Override
+	public void testPeriodic() {
+	}
+}

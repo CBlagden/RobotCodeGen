@@ -1,0 +1,166 @@
+<robot>
+
+    <subsystems>
+        <subsystem>
+            <name>
+                Drive
+            </name>
+            <motors>
+                <motor>
+                    <port>
+                        0
+                    </port>
+                    <name>
+                        driveRightMaster
+                    </name>
+                    <type>
+                        TalonSRXMC
+                    </type>
+                    <sensor>AnalogEncoder</sensor>
+                </motor>
+                <motor>
+                    <port>
+                        1
+                    </port>
+                    <name>
+                        driveRightSlave
+                    </name>
+                    <type>
+                        TalonSRXMC
+                    </type>
+                    <sensor>NoSensor</sensor>
+                </motor>
+                <motor>
+                    <port>
+                        2
+                    </port>
+                    <name>
+                        driveLeftMaster
+                    </name>
+                    <type>
+                        TalonSRXMC
+                    </type>
+                    <sensor>AnalogEncoder</sensor>
+                </motor>
+                <motor>
+                    <port>3</port>
+                    <name>driveLeftSlave</name>
+                    <type>TalonSRXMC</type>
+                    <sensor>NoSensor</sensor>
+                </motor>
+                <motor>
+                    <port>4</port>
+                    <name>shifter</name>
+                    <type>Solenoid</type>
+                    <sensor>NoSensor</sensor>
+                </motor>
+            </motors>
+
+            <actions>
+                <action>
+                    <name>setHighGear</name>
+                    <type>Bumper_Right</type>
+                    <m-motor>shifter</m-motor>
+                    <m-sensor>NoSensor</m-sensor>
+                    <threshold>0</threshold>
+                    <controller>driverRemote</controller>
+                    <value>true</value>
+                    <reverse>false</reverse>
+                </action>
+            </actions>
+
+            <algorithms>
+                <algorithm>
+                    <type>
+                        DriveCheezyDriveEquation
+                    </type>
+                </algorithm>
+            </algorithms>
+
+
+        </subsystem>
+
+        <subsystem>
+
+            <name>FuelIntake</name>
+
+            <motors>
+                <motor>
+                    <name>fuelIntake</name>
+                    <type>SparkMC</type>
+                    <port>7</port>
+                    <sensor>NoSensor</sensor>
+                </motor>
+            </motors>
+
+            <algorithms>
+                <algorithm>
+                    <type>BlankController</type>
+                </algorithm>
+            </algorithms>
+
+            <sensors>
+                <sensor>
+                    <name>gearHasSensor</name>
+                    <type>AnalogInput</type>
+                    <port>6</port>
+                </sensor>
+            </sensors>
+
+            <actions>
+                <action>
+                    <m-motor>fuelIntake</m-motor>
+                    <m-sensor>NoSensor</m-sensor>
+                    <threshold>0</threshold>
+                    <name>fuelIntakeIn</name>
+                    <type>Trigger_Left</type>
+                    <controller>operatorRemote</controller>
+                    <reverse>false</reverse>
+                </action>
+
+                <action>
+                    <m-motor>fuelIntake</m-motor>
+                    <m-sensor>NoSensor</m-sensor>
+                    <threshold>0</threshold>
+                    <name>fuelIntakeOut</name>
+                    <type>Trigger_Right</type>
+                    <controller>operatorRemote</controller>
+                    <reverse>true</reverse>
+                </action>
+
+            </actions>
+
+            <controls>
+
+            </controls>
+
+        </subsystem>
+
+    </subsystems>
+
+    <controllers>
+        <controller>
+            <name>
+                driverRemote
+            </name>
+            <port>
+                0
+            </port>
+            <type>
+                XboxController
+            </type>
+        </controller>
+        <controller>
+            <name>
+                operatorRemote
+            </name>
+            <port>
+                1
+            </port>
+            <type>
+                XboxController
+            </type>
+        </controller>
+    </controllers>
+
+</robot>
