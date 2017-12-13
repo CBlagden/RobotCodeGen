@@ -104,8 +104,8 @@ public class SpecLoader {
         for (SubsystemSpec subsystemSpec : specLoader.subsystems) {
             subsystemRenderer.render(subsystemSpec);
         }
-   //   controlsRenderer.render(specLoader.controllers);
-   //   robotRenderer.render(specLoader.subsystems);
+      controlsRenderer.render(specLoader.controllers);
+      robotRenderer.render(specLoader.subsystems);
     }
 
 }

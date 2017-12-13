@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <robot>
-
     <subsystems>
+
         <subsystem>
             <name>
                 Drive
@@ -55,7 +56,6 @@
                     <sensor>NoSensor</sensor>
                 </motor>
             </motors>
-
             <actions>
                 <action>
                     <name>setHighGear</name>
@@ -68,7 +68,6 @@
                     <reverse>false</reverse>
                 </action>
             </actions>
-
             <algorithms>
                 <algorithm>
                     <type>
@@ -76,14 +75,10 @@
                     </type>
                 </algorithm>
             </algorithms>
-
-
         </subsystem>
 
         <subsystem>
-
             <name>FuelIntake</name>
-
             <motors>
                 <motor>
                     <name>fuelIntake</name>
@@ -92,21 +87,11 @@
                     <sensor>NoSensor</sensor>
                 </motor>
             </motors>
-
             <algorithms>
                 <algorithm>
                     <type>BlankController</type>
                 </algorithm>
             </algorithms>
-
-            <sensors>
-                <sensor>
-                    <name>gearHasSensor</name>
-                    <type>AnalogInput</type>
-                    <port>6</port>
-                </sensor>
-            </sensors>
-
             <actions>
                 <action>
                     <m-motor>fuelIntake</m-motor>
@@ -117,7 +102,6 @@
                     <controller>operatorRemote</controller>
                     <reverse>false</reverse>
                 </action>
-
                 <action>
                     <m-motor>fuelIntake</m-motor>
                     <m-sensor>NoSensor</m-sensor>
@@ -127,17 +111,46 @@
                     <controller>operatorRemote</controller>
                     <reverse>true</reverse>
                 </action>
-
             </actions>
-
-            <controls>
-
-            </controls>
-
         </subsystem>
-
+        <subsystem>
+            <name>GearIntake</name>
+            <sensors>
+                <sensor>
+                    <name>gearHasSensor</name>
+                    <type>AnalogInput</type>
+                    <port>6</port>
+                </sensor>
+            </sensors>
+            <motors>
+                <motor>
+                    <name>gearIntake</name>
+                    <type>Solenoid</type>
+                    <port>5</port>
+                    <sensor>NoSensor</sensor>
+                </motor>
+            </motors>
+            <actions>
+                <action>
+                    <m-motor>gearIntake</m-motor>
+                    <m-sensor>NoSensor</m-sensor>
+                    <threshold>0</threshold>
+                    <type>Bumper_Right</type>
+                    <controller>operatorRemote</controller>
+                    <reverse>false</reverse>
+                    <value>true</value>
+                </action>
+                <action>
+                    <m-motor>NoMotor</m-motor>
+                    <m-sensor>gearHasSensor</m-sensor>
+                    <threshold>0.7</threshold>
+                    <controller>operatorRemote</controller>
+                    <reverse>false</reverse>
+                    <value></value>
+                </action>
+            </actions>
+        </subsystem>
     </subsystems>
-
     <controllers>
         <controller>
             <name>
@@ -162,5 +175,4 @@
             </type>
         </controller>
     </controllers>
-
 </robot>

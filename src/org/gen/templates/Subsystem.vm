@@ -51,19 +51,30 @@ public class $className extends ControlledSubsystem {
 
     @Override
     public void initTeleop() {
-        this.setController(new $algorithm.getType()());
+        this.setController(new BlankController());
     }
 
     @Override
     public void updateTeleop() {
+                this.setController(new $algorithm.getType()());
         #foreach ($action in $actions)
+          #if ($action.getmSensor() == "NoSensor")
             #if ($action.isBinary($action.getType()))
                 #set ($controllerInput = "Controls."+$action.getController()+".get"+$action.getType() + ")")
                 if ($controllerInput) {
                     #set ($motorSet = $action.getmMotor()+".set("+$action.getValue()+")")
                     $motorSet;
                 } else {
-
+                   #if ($action.getValue() == true)
+                    #set ($motorSet = $action.getmMotor()+".set(false)")
+                    $motorSet;
+                   #elseif ($action.getValue() == false)
+                    #set ($motorSet = $action.getmMotor()+".set(true)")
+                    $motorSet;
+                   #elseif ($action.getValue() != 0)
+                    #set ($motorSet = $action.getmMotor()+".set(0)")
+                    $motorSet;
+                   #end
                 }
             #else
                 #set ($controllerInput = "Controls."+$action.getController()+".get"+$action.getType())
@@ -74,11 +85,16 @@ public class $className extends ControlledSubsystem {
                     #else
                      #set ($motorSet = $action.getmMotor()+".set("+$action.getName()+")")
                     #end
-                     $motorSet;
+                    $motorSet;
+                } else {
+                     #set ($motorSet = $action.getmMotor()+".set(0)")
+                    $motorSet;
                 }
             #end
-        #end
+          #else
 
+          #end
+        #end
     }
 
     @Override
@@ -87,13 +103,13 @@ public class $className extends ControlledSubsystem {
     }
 
     @Override
-    public void updateTeleop() {
+    public void updateAuto() {
 
     }
 
     @Override
     public void manualControl() {
-
+        updateTeleop();
     }
 
     @Override

@@ -119,13 +119,13 @@ public class ActionSpec implements Spec {
         } else if (returnType.contains("POV_press")) {
             returnType = "POV";
         } else if (returnType.contains("POV_top")) {
-            returnType = "POV(0)";
+            returnType = "POV() == 0";
         } else if (returnType.contains("POV_right")) {
-            returnType = "POV(90)";
+            returnType = "POV() == 90";
         } else if (returnType.contains("POV_bottom")) {
-            returnType = "POV(180)";
+            returnType = "POV() == 180";
         } else if (returnType.contains("POV_left")) {
-            returnType = "POV(270)";
+            returnType = "POV() == 270";
         }
         return returnType;
     }
