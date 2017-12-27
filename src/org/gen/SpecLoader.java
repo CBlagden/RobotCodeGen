@@ -11,6 +11,7 @@ import org.gen.renderers.ControlsRenderer;
 import org.gen.renderers.SubsystemRenderer;
 import org.gen.specs.*;
 import org.gen.renderers.RobotRenderer;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -25,8 +26,8 @@ public class SpecLoader {
         File propertiesFile = new File(specFile);
         FileBasedConfigurationBuilder<XMLConfiguration> builder =
                 new FileBasedConfigurationBuilder<>(XMLConfiguration.class)
-                .configure(params.xml()
-                .setFile(propertiesFile));
+                        .configure(params.xml()
+                                .setFile(propertiesFile));
         try {
 
             HierarchicalConfiguration<ImmutableNode> config = builder.getConfiguration();
@@ -53,23 +54,23 @@ public class SpecLoader {
                     subsystemSpec.addMotor(motor);
                 }
 
-               // There should only be one algorithm.
-               for (HierarchicalConfiguration<ImmutableNode> algorithm : subsystem.childConfigurationsAt("algorithms")) {
-                   AlgorithmSpec algorithmSpec = new AlgorithmSpec();
-                   algorithmSpec.setName(algorithm.getString("name"));
-                   algorithmSpec.setType(algorithm.getString("type"));
-                   subsystemSpec.setAlgorithmSpec(algorithmSpec);
-               }
+                // There should only be one algorithm.
+                for (HierarchicalConfiguration<ImmutableNode> algorithm : subsystem.childConfigurationsAt("algorithms")) {
+                    AlgorithmSpec algorithmSpec = new AlgorithmSpec();
+                    algorithmSpec.setName(algorithm.getString("name"));
+                    algorithmSpec.setType(algorithm.getString("type"));
+                    subsystemSpec.setAlgorithmSpec(algorithmSpec);
+                }
 
-               for (HierarchicalConfiguration<ImmutableNode> sensor : subsystem.childConfigurationsAt("sensors")) {
+                for (HierarchicalConfiguration<ImmutableNode> sensor : subsystem.childConfigurationsAt("sensors")) {
                     SensorSpec sensorSpec = new SensorSpec();
                     sensorSpec.setName(sensor.getString("name"));
                     sensorSpec.setType(sensor.getString("type"));
                     sensorSpec.setPort(sensor.getInt("port"));
                     subsystemSpec.addSensor(sensorSpec);
-               }
+                }
 
-               for (HierarchicalConfiguration<ImmutableNode> action : subsystem.childConfigurationsAt("actions")) {
+                for (HierarchicalConfiguration<ImmutableNode> action : subsystem.childConfigurationsAt("actions")) {
                     ActionSpec actionSpec = new ActionSpec();
                     actionSpec.setmMotor(action.getString("m-motor"));
                     actionSpec.setmSensor(action.getString("m-sensor"));
@@ -80,9 +81,9 @@ public class SpecLoader {
                     actionSpec.setValue(action.getString("value"));
                     actionSpec.setReverse(action.getBoolean("reverse"));
                     subsystemSpec.addAction(actionSpec);
-               }
+                }
 
-               subsystems.add(subsystemSpec);
+                subsystems.add(subsystemSpec);
 
             }
 
@@ -104,8 +105,8 @@ public class SpecLoader {
         for (SubsystemSpec subsystemSpec : specLoader.subsystems) {
             subsystemRenderer.render(subsystemSpec);
         }
-      controlsRenderer.render(specLoader.controllers);
-      robotRenderer.render(specLoader.subsystems);
+        controlsRenderer.render(specLoader.controllers);
+        robotRenderer.render(specLoader.subsystems);
     }
 
 }

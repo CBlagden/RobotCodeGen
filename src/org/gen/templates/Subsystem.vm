@@ -1,5 +1,5 @@
 #set ($package="org.usfirst.frc.team"+$teamName+".subsystems;")
-#set ($controlsImport="org.usfirst.team"+$teamName+".driverStation.Controls")
+#set ($controlsImport="org.usfirst.frc.team"+$teamName+".driverStation.Controls")
 
 package $package
 

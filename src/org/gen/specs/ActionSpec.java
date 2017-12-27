@@ -29,7 +29,7 @@ public class ActionSpec implements Spec {
         POV_top,  // 0 degress
         POV_right, // 90 degress
         POV_bottom, // 180 degrees
-        POV_left // 270 degrees
+        POV_left,// 270 degrees
     }
     private InputTypes type = InputTypes.NoButton;
 

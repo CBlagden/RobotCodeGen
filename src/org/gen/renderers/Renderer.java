@@ -2,6 +2,8 @@ package org.gen.renderers;
 
 import org.apache.velocity.VelocityContext;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,8 +11,10 @@ import java.util.Date;
 public abstract class Renderer {
 
     protected VelocityContext context;
-    private final String teamName = "3309";
+    protected final String teamName = "3309";
     private DateFormat format = new SimpleDateFormat();
+    protected PrintWriter pw;
+    protected File javaFile;
 
     protected Renderer() {
         context = new VelocityContext();

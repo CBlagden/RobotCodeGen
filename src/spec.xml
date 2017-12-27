@@ -132,6 +132,7 @@
             </motors>
             <actions>
                 <action>
+                    <name>gearIntakePneumatic</name>
                     <m-motor>gearIntake</m-motor>
                     <m-sensor>NoSensor</m-sensor>
                     <threshold>0</threshold>
@@ -139,14 +140,6 @@
                     <controller>operatorRemote</controller>
                     <reverse>false</reverse>
                     <value>true</value>
-                </action>
-                <action>
-                    <m-motor>NoMotor</m-motor>
-                    <m-sensor>gearHasSensor</m-sensor>
-                    <threshold>0.7</threshold>
-                    <controller>operatorRemote</controller>
-                    <reverse>false</reverse>
-                    <value></value>
                 </action>
             </actions>
         </subsystem>

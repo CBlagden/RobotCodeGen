@@ -92,13 +92,6 @@
                     <type>BlankController</type>
                 </algorithm>
             </algorithms>
-            <sensors>
-                <sensor>
-                    <name>gearHasSensor</name>
-                    <type>AnalogInput</type>
-                    <port>6</port>
-                </sensor>
-            </sensors>
             <actions>
                 <action>
                     <m-motor>fuelIntake</m-motor>
@@ -122,6 +115,13 @@
         </subsystem>
         <subsystem>
             <name>GearIntake</name>
+            <sensors>
+                <sensor>
+                    <name>gearHasSensor</name>
+                    <type>AnalogInput</type>
+                    <port>6</port>
+                </sensor>
+            </sensors>
             <motors>
                 <motor>
                     <name>gearIntake</name>
@@ -132,6 +132,7 @@
             </motors>
             <actions>
                 <action>
+                    <name>gearIntakePneumatic</name>
                     <m-motor>gearIntake</m-motor>
                     <m-sensor>NoSensor</m-sensor>
                     <threshold>0</threshold>

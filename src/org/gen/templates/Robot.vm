@@ -1,4 +1,4 @@
-#set ($package="org.usfirst.team"+$teamName+".robot")
+#set ($package="org.usfirst.frc.team"+$teamName+".robot")
 
 package $package;
 
