@@ -15,6 +15,7 @@ public abstract class Renderer {
     private DateFormat format = new SimpleDateFormat();
     protected PrintWriter pw;
     protected File javaFile;
+    public static String rootPath = "";
 
     protected Renderer() {
         context = new VelocityContext();
@@ -22,6 +23,6 @@ public abstract class Renderer {
         context.put("date", format.format(new Date()));
     }
 
-    abstract void render(Object object);
+    protected abstract void render(Object object);
 
 }

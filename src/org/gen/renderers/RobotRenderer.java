@@ -15,7 +15,7 @@ public class RobotRenderer extends Renderer {
     public void render(Object object) {
         ArrayList<SubsystemSpec> subsystems =(ArrayList<SubsystemSpec>) object;
         context.put("subsystems", subsystems);
-        javaFile = new File("org/usfirst/frc/team"+teamName+"/robot/Robot.java");
+        javaFile = new File(rootPath+ "org/usfirst/frc/team"+teamName+"/robot/Robot.java");
         if (!javaFile.getParentFile().exists()) {
             javaFile.getParentFile().mkdirs();
         }

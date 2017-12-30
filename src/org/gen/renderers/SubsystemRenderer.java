@@ -20,7 +20,7 @@ public class SubsystemRenderer extends Renderer {
         context.put("sensors", subsystemSpec.getSensors());
         context.put("algorithm", subsystemSpec.getAlgorithmSpec());
         context.put("actions", subsystemSpec.getActions());
-        javaFile = new File("org/usfirst/frc/team"+teamName+"/subsystems/"+subsystemSpec.getName()+".java");
+        javaFile = new File(rootPath + "org/usfirst/frc/team"+teamName+"/subsystems/"+subsystemSpec.getName()+".java");
         if (!javaFile.getParentFile().exists()) {
             javaFile.getParentFile().mkdirs();
         }
@@ -33,4 +33,5 @@ public class SubsystemRenderer extends Renderer {
         Velocity.mergeTemplate("org/gen/templates/Subsystem.vm", Charset.defaultCharset().name(), context, pw);
         pw.flush();
     }
+
 }

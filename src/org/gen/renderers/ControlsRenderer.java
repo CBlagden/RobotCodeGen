@@ -10,13 +10,13 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-public class ControlsRenderer extends Renderer{
+public class ControlsRenderer extends Renderer {
 
     @Override
     public void render(Object object) {
         ArrayList<ControllerSpec> controllerSpecs = (ArrayList<ControllerSpec>) object;
         context.put("controllers", controllerSpecs);
-        javaFile = new File("org/usfirst/frc/team"+ teamName+"/driverstation/Controls.java");
+        javaFile = new File(rootPath + "org/usfirst/frc/team"+ teamName+"/driverstation/Controls.java");
         if (!javaFile.getParentFile().exists()) {
             javaFile.getParentFile().mkdirs();
         }

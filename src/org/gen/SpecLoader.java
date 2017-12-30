@@ -8,6 +8,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.tree.ImmutableNode;
 import org.apache.velocity.app.Velocity;
 import org.gen.renderers.ControlsRenderer;
+import org.gen.renderers.Renderer;
 import org.gen.renderers.SubsystemRenderer;
 import org.gen.specs.*;
 import org.gen.renderers.RobotRenderer;
@@ -20,6 +21,17 @@ public class SpecLoader {
 
     private ArrayList<ControllerSpec> controllers = new ArrayList<>();
     private ArrayList<SubsystemSpec> subsystems = new ArrayList<>();
+
+    private final RobotRenderer robotRenderer = new RobotRenderer();
+    private final ControlsRenderer controlsRenderer = new ControlsRenderer();
+    private final SubsystemRenderer subsystemRenderer = new SubsystemRenderer();
+
+    public SpecLoader() {
+        Properties p = new Properties();
+        p.setProperty("resource.loader", "class");
+        p.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        Velocity.init(p);
+    }
 
     public void load(String specFile) {
         Parameters params = new Parameters();
@@ -92,21 +104,19 @@ public class SpecLoader {
         }
     }
 
+    public void render(String rootPath) {
+        Renderer.rootPath = rootPath;
+        robotRenderer.render(subsystems);
+        controlsRenderer.render(controllers);
+        for (SubsystemSpec subsystemSpec : subsystems) {
+            subsystemRenderer.render(subsystemSpec);
+        }
+    }
+
     public static void main(String[] args) {
         SpecLoader specLoader = new SpecLoader();
         specLoader.load("/Users/Chase.Blagden/IdeaProjects/RobotCodeGen/src/spec.xml");
-        Properties p = new Properties();
-        p.setProperty("resource.loader", "class");
-        p.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-        Velocity.init(p);
-        RobotRenderer robotRenderer = new RobotRenderer();
-        ControlsRenderer controlsRenderer = new ControlsRenderer();
-        SubsystemRenderer subsystemRenderer = new SubsystemRenderer();
-        for (SubsystemSpec subsystemSpec : specLoader.subsystems) {
-            subsystemRenderer.render(subsystemSpec);
-        }
-        controlsRenderer.render(specLoader.controllers);
-        robotRenderer.render(specLoader.subsystems);
+        specLoader.render("/Users/Chase.Blagden/Documents/");
     }
 
 }
