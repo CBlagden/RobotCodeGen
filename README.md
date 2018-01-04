@@ -1,2 +1,2 @@
 # RobotCodeGen
-code to write robot code
+Project to take user input and process it into robot code.

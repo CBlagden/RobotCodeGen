@@ -5,7 +5,7 @@ package $package;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /*
-*  @author Chase Blagden && Nico Machado
+*  @author Chase Blagden
 *  created on $date
 */
 public class Robot extends IterativeRobot {

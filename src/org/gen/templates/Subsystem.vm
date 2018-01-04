@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.*;
 import $controlsImport;
 
 /*
-*   @author Chase Blagden && Nico Machado
+*   @author Chase Blagden
 *   created on $date
 */
 public class $className extends ControlledSubsystem {

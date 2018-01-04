@@ -22,12 +22,12 @@ public class SpecLoader {
     private ArrayList<ControllerSpec> controllers = new ArrayList<>();
     private ArrayList<SubsystemSpec> subsystems = new ArrayList<>();
 
-    private final RobotRenderer robotRenderer = new RobotRenderer();
-    private final ControlsRenderer controlsRenderer = new ControlsRenderer();
-    private final SubsystemRenderer subsystemRenderer = new SubsystemRenderer();
+    private RobotRenderer robotRenderer = new RobotRenderer();
+    private ControlsRenderer controlsRenderer = new ControlsRenderer();
+    private SubsystemRenderer subsystemRenderer = new SubsystemRenderer();
+    private Properties p = new Properties();
 
     public SpecLoader() {
-        Properties p = new Properties();
         p.setProperty("resource.loader", "class");
         p.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(p);
@@ -116,7 +116,7 @@ public class SpecLoader {
     public static void main(String[] args) {
         SpecLoader specLoader = new SpecLoader();
         specLoader.load("/Users/Chase.Blagden/IdeaProjects/RobotCodeGen/src/spec.xml");
-        specLoader.render("/Users/Chase.Blagden/Documents/");
+        specLoader.render("/Users/Chase.Blagden/Documents/RobotCodeGenOutput/");
     }
 
 }

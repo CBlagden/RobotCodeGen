@@ -6,7 +6,7 @@ import library.controllers.BlankController;
 
 /*
  * Class for defining controllers
- * @author Chase Blagden && Nico Machado
+ * @author Chase Blagden
  * created on $date
  * */
 public class Controls {
